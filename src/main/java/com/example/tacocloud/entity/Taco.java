@@ -1,12 +1,10 @@
 package com.example.tacocloud.entity;
 
 import com.datastax.oss.driver.api.core.uuid.Uuids;
-import com.example.tacocloud.entity.ref.IngredientRef;
 import lombok.Data;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -36,9 +34,9 @@ public class Taco {
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     @Column("ingredients")
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<IngredientUDT> ingredients = new ArrayList<>();
 
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(IngredientUDT ingredient) {
         this.ingredients.add(ingredient);
     }
 
